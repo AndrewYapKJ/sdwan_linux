@@ -54,7 +54,10 @@ sudo ufw allow 4500/udp
 sudo ufw --force enable
 
 # Start IPsec
-sudo systemctl daemon-reload
+
+sudo systemctl enable strongswan-starter
+sudo systemctl start strongswan-starter
+
 sudo systemctl enable strongswan
 sudo systemctl start strongswan
 

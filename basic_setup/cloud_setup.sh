@@ -5,7 +5,7 @@
 # Assumes public IP is set; adjust variables as needed.
 
 # Variables (edit these)
-PUBLIC_IP="3.1.23.200"  # Your instance's public IP
+PUBLIC_IP="3.235.254.167"  # Your instance's public IP
 PSK="your_shared_secret_here"  # Same PSK for CPE
 
 echo "Starting SD-WAN Aggregator Setup on Cloud Server..."
@@ -65,8 +65,9 @@ echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf
 
 # Start IPsec
 sudo systemctl daemon-reload
-sudo systemctl enable strongswan
-sudo systemctl start strongswan
+
+sudo systemctl enable strongswan-starter
+sudo systemctl start strongswan-starter
 
 # Test connectivity
 echo "Testing connectivity..."

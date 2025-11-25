@@ -9,7 +9,8 @@ echo "Setting up CPE..."
 source ../common/config.sh
 
 # Update system
-sudo apt update && sudo apt upgrade -y
+sudo apt update 
+sudo apt upgrade -y
 
 # Install strongSwan and traffic control tools
 sudo apt install -y strongswan iproute2
