@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SD-WAN Custom Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>SD-WAN Monitoring Dashboard</h1>
+    <canvas id="tunnelChart" width="400" height="200"></canvas>
+    <canvas id="bandwidthChart" width="400" height="200"></canvas>
+
+    <script>
+        // Fetch metrics from your API or OTLP endpoint
+        async function fetchMetrics() {
+            // Example: Fetch from a custom API endpoint
+            const response = await fetch('/api/metrics');  // Implement this in your API server
+            const data = await response.json();
+
+            // Update charts
+            new Chart(document.getElementById('tunnelChart'), {
+                type: 'line',
+                data: { labels: data.times, datasets: [{ label: 'Tunnel Status', data: data.tunnel_up }] }
+            });
+
+            new Chart(document.getElementById('bandwidthChart'), {
+                type: 'line',
+                data: { labels: data.times, datasets: [{ label: 'Bandwidth (Mbps)', data: data.bandwidth }] }
+            });
+        }
+
+        setInterval(fetchMetrics, 10000);  // Update every 10s
+        fetchMetrics();
+    </script>
+</body>
+</html>
